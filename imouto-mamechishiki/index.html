@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない | かせいさんとこ</title>
+<meta name="description" content="眠れない夜。あなたの部屋に、妹がやってくる。布団に入ってきた妹が語る、眠れなくなる豆知識――。サークル「かせいさんとこ」ボイスドラマ第二弾。2026秋M3 B-13a にて頒布。">
+<meta name="theme-color" content="#0a0c26">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="かせいさんとこ">
+<meta property="og:title" content="ボイスドラマ「妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない」">
+<meta property="og:description" content="眠れない夜。あなたの部屋に、妹がやってくる。布団に入ってきた妹が語る、眠れなくなる豆知識――。2026秋M3 B-13a にて頒布。">
+<meta property="og:url" content="https://kasei-san.com/imouto-mamechishiki/">
+<meta property="og:image" content="https://kasei-san.com/imouto-mamechishiki/img/ogp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kasei_san">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0a0c26;
+    --ink: #f0f3ff;
+    --ink-dim: #dee4fc;
+    --gold: #ffe2a0;
+    --stroke: #0c0e2e;
+    --panel: rgba(18, 22, 60, 0.62);
+    --line: rgba(255, 226, 160, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--night);
+    color: var(--ink);
+    font-family: "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- scroll scene ---------- */
+  #scene { position: relative; height: 600vh; }
+  .stage {
+    position: sticky; top: 0;
+    height: 100vh; height: 100svh;
+    overflow: hidden;
+  }
+  .bg { position: absolute; inset: 0; will-change: transform; }
+  .bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .frame {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    container-type: size;
+  }
+
+  .sister {
+    position: absolute; will-change: transform, opacity;
+    filter: drop-shadow(0 0 1.1cqw rgba(170, 185, 255, 0.45));
+    opacity: 0;
+  }
+  .sister img {
+    position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    -webkit-mask-image: linear-gradient(to bottom, #000 var(--fade-a), rgba(0,0,0,0.06) var(--fade-b));
+            mask-image: linear-gradient(to bottom, #000 var(--fade-a), rgba(0,0,0,0.06) var(--fade-b));
+  }
+  .sister img + img { opacity: 0; }
+
+  .logo {
+    position: absolute; display: block; height: auto;
+    filter: drop-shadow(0 0.35cqw 0.6cqw rgba(0, 0, 20, 0.8));
+    will-change: transform;
+    transform-origin: 50% 50%;
+  }
+
+  .story {
+    position: absolute;
+    writing-mode: vertical-rl;
+    font-size: var(--f);
+    line-height: 1.72;
+    white-space: nowrap;
+    margin: 0;
+  }
+  .story p { margin: 0; will-change: opacity, transform, filter; opacity: 0; }
+  .story p, .event {
+    text-shadow:
+      0.05em 0 0 var(--stroke), -0.05em 0 0 var(--stroke), 0 0.05em 0 var(--stroke), 0 -0.05em 0 var(--stroke),
+      0.035em 0.035em 0 var(--stroke), -0.035em -0.035em 0 var(--stroke), 0.035em -0.035em 0 var(--stroke), -0.035em 0.035em 0 var(--stroke),
+      0 0 0.25em rgba(4, 6, 24, 0.95), 0 0 0.45em rgba(150, 170, 255, 0.35);
+  }
+  .story .intro { color: var(--ink-dim); font-weight: 500; }
+  .story .head { font-size: 1.53em; font-weight: 700; line-height: 1.5; }
+  .story .body { font-weight: 500; }
+  .story .last { font-size: 1.21em; font-weight: 800; color: var(--gold); }
+  .story em { font-style: normal; color: var(--gold); }
+  .story .gap-l { margin-block-start: 1.3em; }
+  .story .gap-m { margin-block-start: 1.15em; }
+  .story .gap-s { margin-block-start: 0.8em; }
+  .story .gap-xl { margin-block-start: 1.45em; }
+
+  .event {
+    position: absolute; margin: 0; opacity: 0;
+    color: var(--ink); font-weight: 500; white-space: nowrap;
+  }
+  .event b { color: var(--gold); font-weight: 700; font-size: 1.2em; margin: 0 0.6em; }
+
+  .sparkle {
+    position: absolute; width: var(--s); height: var(--s);
+    opacity: 0;
+  }
+  .sparkle::before {
+    content: ""; position: absolute; inset: 0;
+    background: #fff0c8;
+    clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+    filter: drop-shadow(0 0 4px rgba(255, 240, 200, 0.9));
+    animation: twinkle 3.2s ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes twinkle { 0%, 100% { transform: scale(0.75); opacity: 0.55; } 50% { transform: scale(1.1); opacity: 1; } }
+
+  .hint {
+    position: absolute; left: 50%; bottom: calc(3.5svh + env(safe-area-inset-bottom)); transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--ink); font-size: 13px; letter-spacing: 0.35em; text-indent: 0.35em;
+    text-shadow: 0 0 6px rgba(4, 6, 24, 0.9);
+    pointer-events: none;
+  }
+  .hint .arrow {
+    width: 14px; height: 14px;
+    border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    animation: nudge 1.6s ease-in-out infinite;
+  }
+  .hint .arrow + .arrow { margin-top: -8px; opacity: 0.5; animation-delay: 0.15s; }
+  @keyframes nudge { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 5px; } }
+
+  .skip {
+    position: fixed; right: calc(16px + env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 10;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px 9px 18px; border-radius: 999px;
+    border: 1px solid rgba(222, 228, 252, 0.45);
+    background: rgba(10, 12, 38, 0.55); backdrop-filter: blur(4px);
+    color: var(--ink); font: inherit; font-size: 13px; letter-spacing: 0.25em;
+    cursor: pointer; transition: opacity 0.3s, border-color 0.2s;
+  }
+  .skip:hover, .skip:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+  .skip::after {
+    content: ""; width: 7px; height: 7px;
+    border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg); margin-top: -4px;
+  }
+  .skip.is-hidden { opacity: 0; pointer-events: none; }
+  .skip[hidden] { display: none; }
+
+  /* landscape: reproduce the 1920x1080 notice composition inside a 16:9 frame */
+  @media (min-aspect-ratio: 1/1) {
+    .frame { width: min(100vw, 177.78svh); aspect-ratio: 16 / 9; }
+    .sister { left: 5.73cqw; top: 8.33cqh; height: 122.2cqh; aspect-ratio: 640 / 1400; --fade-a: 58%; --fade-b: 76%; }
+    .logo { left: 3.65cqw; bottom: 8.8cqh; width: 29.17cqw; }
+    .story { right: 4.7cqw; top: 8.1cqh; --f: 1.98cqw; }
+    .story .gap-l { margin-block-start: 1.26em; }
+    .event { left: 3.65cqw; width: 29.17cqw; text-align: center; bottom: 2.4cqh; font-size: 1.56cqw; }
+    .sp1 { left: 24cqw; top: 5cqh; --s: 1.5cqw; }
+    .sp2 { left: 13.5cqw; top: 11cqh; --s: 1.3cqw; --d: 1.1s; }
+    .sp3 { left: 97.3cqw; top: 59cqh; --s: 1.2cqw; --d: 0.5s; }
+    .sp4 { left: 37.5cqw; top: 92cqh; --s: 1cqw; --d: 1.7s; }
+  }
+  /* portrait (phones): title on top, story in the middle, sister rising below the story */
+  @media (max-aspect-ratio: 1/1) {
+    .frame {
+      width: 100vw; height: 100svh;
+      --logo-w: min(82cqw, 48cqh);                    /* the cap only bites on tablets */
+      --logo-h: calc(var(--logo-w) * 0.5164);
+      --story-top: calc(4.5cqh + var(--logo-h) + env(safe-area-inset-top));
+      /* width decides the size; the story may run into the sister's hair */
+      --f: min(3.85cqw, 2.3cqh);
+    }
+    .logo { left: calc(50cqw - var(--logo-w) / 2); top: calc(2.5cqh + env(safe-area-inset-top)); width: var(--logo-w); }
+    /* centred: when the height caps --f the block is narrower than the screen */
+    .story { left: 50%; translate: -50% 0; width: max-content; top: var(--story-top); line-height: 1.6; }
+    .story .head { line-height: 1.4; }
+    .story .gap-l, .story .gap-m { margin-block-start: 0.7em; }
+    .story .gap-s { margin-block-start: 0.45em; }
+    .story .gap-xl { margin-block-start: 0.8em; }
+    /* The longest column is 23 characters, so the story ends ~23.6em below its top.
+       The sister is placed so her eyes (28.7% down the image) sit just under that line:
+       her hair may run behind the text, her face never does. Face centre is 57% across. */
+    .sister {
+      --h: 83cqh;
+      height: var(--h); aspect-ratio: 640 / 1400;
+      top: calc(var(--story-top) + 23.6 * var(--f) + 2cqh - 0.287 * var(--h));
+      left: calc(45cqw - 0.26 * var(--h));
+      --fade-a: 100%; --fade-b: 101%;
+    }
+    /* text over the light hair needs a heavier halo than over the night sky */
+    .story p {
+      text-shadow:
+        0.05em 0 0 var(--stroke), -0.05em 0 0 var(--stroke), 0 0.05em 0 var(--stroke), 0 -0.05em 0 var(--stroke),
+        0.035em 0.035em 0 var(--stroke), -0.035em -0.035em 0 var(--stroke), 0.035em -0.035em 0 var(--stroke), -0.035em 0.035em 0 var(--stroke),
+        0 0 0.3em rgba(4, 6, 24, 0.95), 0 0 0.7em rgba(4, 6, 24, 0.8), 0 0 1.1em rgba(4, 6, 24, 0.55);
+    }
+    .event {
+      left: 50%; translate: -50% 0; bottom: calc(2.5cqh + env(safe-area-inset-bottom));
+      font-size: min(3.6cqw, 1.8cqh);
+    }
+    .sp1 { left: 6cqw; top: calc(var(--story-top) + 30cqh); --s: 3.2cqw; }
+    .sp2 { left: 88cqw; top: 90cqh; --s: 2.8cqw; --d: 1.1s; }
+    .sp3 { left: 10cqw; top: 86cqh; --s: 2.2cqw; --d: 0.5s; }
+    .sp4 { left: 4cqw; top: 1.5cqh; --s: 2.4cqw; --d: 1.7s; }
+  }
+
+  /* short phones: the sister's face sits where the event line would go; the 頒布 section repeats it */
+  @media (max-aspect-ratio: 1/1) and (max-height: 720px) { .event { display: none; } }
+
+  /* ---------- info sections ---------- */
+  .info {
+    position: relative; isolation: isolate;
+    padding: clamp(64px, 12vh, 120px) 20px clamp(56px, 10vh, 100px);
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(90, 100, 200, 0.18), transparent 60%),
+      linear-gradient(to bottom, #0a0c26, #11143a 40%, #0a0c26);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+
+  /* Night sky carried on below the scene. The layer is as tall as .info and holds a
+     sticky viewport-sized child, so it stays put while reading (background-attachment:
+     fixed does not work on iOS Safari). */
+  .info-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .info-bg .sky {
+    position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  }
+  .info-bg .sky > img.bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
+  .info-bg .sky::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(10, 12, 38, 0.25), rgba(10, 12, 38, 0.7));
+  }
+  .info-bg .sleeper {
+    position: absolute; right: -6vw; bottom: -30svh; height: 115svh; width: auto;
+    opacity: 0.2;
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 75%), linear-gradient(to right, transparent, #000 35%);
+            mask-image: linear-gradient(to bottom, #000 45%, transparent 75%), linear-gradient(to right, transparent, #000 35%);
+    -webkit-mask-composite: source-in; mask-composite: intersect;
+  }
+  .info-bg .sparkle { opacity: 0.8; }
+  .info-bg .s1 { left: 8vw; top: 18svh; --s: 18px; }
+  .info-bg .s2 { left: 44vw; top: 8svh; --s: 12px; --d: 1.2s; }
+  .info-bg .s3 { left: 90vw; top: 30svh; --s: 14px; --d: 0.6s; }
+  .info-bg .s4 { left: 14vw; top: 78svh; --s: 11px; --d: 2s; }
+  @media (max-width: 560px) {
+    .info-bg .sleeper { right: -30vw; height: 90svh; bottom: -22svh; opacity: 0.16; }
+  }
+  .synopsis { text-shadow: 0 0 0.6em rgba(6, 8, 30, 0.9); }
+  .footer .logo-small { display: block; width: min(280px, 70vw); height: auto; margin: 0 auto 18px; filter: drop-shadow(0 4px 10px rgba(0,0,20,0.8)); }
+  .info section + section { margin-top: clamp(56px, 9vh, 96px); }
+  .info h2 {
+    font-size: clamp(22px, 3.2vw, 30px); font-weight: 700; letter-spacing: 0.2em;
+    margin: 0 0 28px; display: flex; align-items: center; gap: 18px;
+  }
+  .info h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--line), transparent); }
+  /* no boxes: sections are separated by space and type alone */
+  .info .wrap { text-shadow: 0 0 0.5em rgba(6, 8, 30, 0.95), 0 0 1.2em rgba(6, 8, 30, 0.7); }
+
+  .synopsis { text-align: center; font-size: clamp(16px, 2.1vw, 19px); line-height: 2.1; letter-spacing: 0.06em; }
+  .synopsis p { margin: 0 0 1.4em; }
+  /* phrases wrap as units on narrow screens instead of mid-word */
+  .synopsis span { display: inline-block; }
+  .synopsis blockquote {
+    margin: 0 0 1.4em;
+    font-size: 1.15em; font-weight: 600; line-height: 2;
+  }
+  .synopsis blockquote p { margin: 0; }
+  .synopsis em { font-style: normal; color: var(--gold); }
+  .synopsis .series { margin: 2.2em 0 0; font-size: 0.85em; color: var(--ink-dim); letter-spacing: 0.15em; }
+
+  .video {
+    position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
+    background: url("img/bg_land.jpg") center / cover;
+    display: grid; place-items: center;
+  }
+  .video::before { content: ""; position: absolute; inset: 0; background: rgba(6, 8, 30, 0.55); }
+  .video .play {
+    position: relative; width: 78px; height: 78px; border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    display: grid; place-items: center;
+  }
+  .video .play::before {
+    content: ""; margin-left: 6px; border-style: solid;
+    border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #fff;
+  }
+  .video .note { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 14px; color: var(--ink-dim); letter-spacing: 0.15em; }
+
+  dl.spec { display: grid; grid-template-columns: max-content 1fr; gap: 18px 36px; margin: 0; font-size: clamp(16px, 2vw, 19px); }
+  dl.spec dt { color: var(--gold); letter-spacing: 0.12em; }
+  dl.spec dd { margin: 0; }
+  dl.spec small { color: var(--ink-dim); font-size: 0.8em; margin-left: 0.4em; }
+
+  #credit .role { font-size: 13px; letter-spacing: 0.2em; color: var(--gold); }
+  .lead { margin-bottom: 40px; }
+  .lead .name { font-size: clamp(30px, 4.4vw, 40px); font-weight: 800; margin: 12px 0 4px; letter-spacing: 0.08em; }
+  .lead .circle-name { color: var(--ink-dim); font-size: 15px; margin-bottom: 14px; }
+  .cast { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px 40px; }
+  .cast .name { font-size: 19px; font-weight: 700; margin: 6px 0 4px; }
+  #credit a, .footer a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid rgba(222, 228, 252, 0.35); }
+  #credit a:hover, .footer a:hover { color: #fff; border-bottom-color: #fff; }
+
+  .dist { display: grid; gap: 30px; }
+  .dist .row { display: grid; justify-items: start; gap: 8px; }
+  .dist .ev { font-size: clamp(17px, 2.2vw, 21px); font-weight: 700; }
+  .dist .ev b { color: var(--gold); margin: 0 0.3em; }
+  .dist .sub { font-size: 14px; color: var(--ink-dim); margin-top: 4px; }
+  .btn {
+    color: var(--gold); text-decoration: none; font-weight: 700; white-space: nowrap;
+    border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+  }
+  .btn::after { content: " →"; }
+  .btn[aria-disabled="true"] { color: var(--ink-dim); opacity: 0.6; pointer-events: none; border-bottom: 0; }
+  .btn[aria-disabled="true"]::after { content: ""; }
+  .tag { font-size: 13px; color: var(--gold); letter-spacing: 0.15em; white-space: nowrap; }
+
+  .footer { text-align: center; padding: 40px 20px 60px; font-size: 14px; color: var(--ink-dim); background: #07091d; }
+  .footer .circle { font-size: 18px; color: var(--ink); font-weight: 700; margin-bottom: 8px; }
+  .footer .circle a { color: var(--ink); border-bottom: 0; }
+
+  @media (max-width: 560px) {
+    dl.spec { grid-template-columns: 1fr; gap: 4px; }
+    dl.spec dd { margin-bottom: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #scene { height: auto; }
+    .stage { position: relative; }
+    .sparkle::before, .hint .arrow { animation: none; }
+    .hint, .skip { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1 class="sr-only">ボイスドラマ「妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない」</h1>
+
+<div id="scene">
+  <div class="stage">
+    <div class="bg">
+      <picture>
+        <source media="(max-aspect-ratio: 1/1)" srcset="img/bg_port.jpg">
+        <img src="img/bg_land.jpg" alt="">
+      </picture>
+    </div>
+
+    <div class="frame">
+      <i class="sparkle sp1"></i><i class="sparkle sp2"></i><i class="sparkle sp3"></i><i class="sparkle sp4"></i>
+
+      <div class="sister" aria-hidden="true">
+        <img src="img/sister_1.webp" alt="">
+        <img src="img/sister_2.webp" alt="">
+        <img src="img/sister_3.webp" alt="">
+      </div>
+
+      <div class="story" lang="ja">
+        <p class="intro">眠れないお兄ちゃんに</p>
+        <p class="intro">お話ししてあげるね。</p>
+        <p class="head gap-l">フンコロガシは</p>
+        <p class="head"><em>天の川</em>を見て道を知るんだよ。</p>
+        <p class="body gap-m">フンをまっすぐ運ばないと、</p>
+        <p class="body">他の子に横取りされちゃうんだって。</p>
+        <p class="body">だから急いで、まっすぐ、逃げるように転がすの。</p>
+        <p class="body gap-s">でもね、まっすぐ進むのって、案外難しいんだよ。</p>
+        <p class="body">だから夜になると、あの子たち、空を見上げるの。</p>
+        <p class="body gap-s"><em>天の川</em>の、<em>光の帯</em>をたよりに、</p>
+        <p class="body">進む方向を決めてるんだって。</p>
+        <p class="last gap-xl">ロマンチックだよね……。</p>
+      </div>
+
+      <img class="logo" src="img/logo.webp" alt="ボイスドラマ 妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない">
+
+      <p class="event">2026秋M3<b>B-13a</b>かせいさんとこ</p>
+    </div>
+
+    <div class="hint" aria-hidden="true">
+      <span>SCROLL</span>
+      <span class="arrow"></span><span class="arrow"></span>
+    </div>
+  </div>
+</div>
+
+<button class="skip" type="button" aria-label="演出をスキップして作品情報へ">SKIP</button>
+
+<main class="info">
+  <div class="info-bg" aria-hidden="true">
+    <div class="sky">
+      <picture>
+        <source media="(max-aspect-ratio: 1/1)" srcset="img/bg_port.jpg">
+        <img class="bg-img" src="img/bg_land.jpg" alt="" loading="lazy">
+      </picture>
+      <img class="sleeper" src="img/sister_3.webp" alt="" loading="lazy">
+      <i class="sparkle s1"></i><i class="sparkle s2"></i><i class="sparkle s3"></i><i class="sparkle s4"></i>
+    </div>
+  </div>
+  <div class="wrap">
+
+    <section id="about-story">
+      <h2>作品概要</h2>
+      <div class="synopsis">
+        <p><span>眠れない夜。</span><span>あなたの部屋に、</span><span>妹がやってくる。</span></p>
+        <blockquote>
+          <p><span>「眠れないお兄ちゃんに、</span><span>お話ししてあげるね。</span></p>
+          <p><span>フンコロガシは、</span><span><em>天の川</em>を見て</span><span>道を知るんだよ。」</span></p>
+        </blockquote>
+        <p><span>布団に入ってきた妹が語る、</span><span>眠れなくなる豆知識――。</span></p>
+        <p class="series"><span>サークル「かせいさんとこ」</span><span>ボイスドラマ第二弾</span></p>
+      </div>
+    </section>
+
+    <section id="listen">
+      <h2>試聴</h2>
+      <!-- 試聴動画ができたら、下の .video を差し替える:
+           <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="試聴" allow="encrypted-media; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div> -->
+      <div class="video">
+        <span class="play" aria-hidden="true"></span>
+        <span class="note">試聴動画 準備中</span>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>作品情報</h2>
+      <div class="panel">
+        <dl class="spec">
+          <dt>形態</dt><dd>ダウンロードカード</dd>
+          <dt>価格</dt><dd>1,000円</dd>
+          <dt>収録時間</dt><dd>約25分<small>（編集中）</small></dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="credit">
+      <h2>クレジット</h2>
+      <div class="panel lead">
+        <div class="role">企画・脚本・制作</div>
+        <div class="name">かせいさん</div>
+        <div class="circle-name">サークル「かせいさんとこ」</div>
+        <a href="https://x.com/kasei_san" target="_blank" rel="noopener">@kasei_san</a>
+      </div>
+      <div class="cast">
+        <div class="panel">
+          <div class="role">声</div>
+          <div class="name">もちみゆ</div>
+          <a href="https://x.com/miyumiyuri" target="_blank" rel="noopener">@miyumiyuri</a>
+        </div>
+        <div class="panel">
+          <div class="role">キャラクターデザイン</div>
+          <div class="name">四月とを</div>
+          <a href="https://x.com/sigsig490" target="_blank" rel="noopener">@sigsig490</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="dist">
+      <h2>頒布</h2>
+      <div class="dist">
+        <div class="panel row">
+          <div>
+            <div class="ev">2026秋M3<b>B-13a</b>かせいさんとこ</div>
+          </div>
+          <span class="tag">イベント頒布</span>
+        </div>
+        <div class="panel row">
+          <div>
+            <div class="ev">冬コミ</div>
+            <div class="sub">当選した場合に頒布予定</div>
+          </div>
+          <span class="tag">予定</span>
+        </div>
+        <div class="panel row">
+          <div>
+            <div class="ev">DLsite</div>
+            <div class="sub">ダウンロード販売を予定しています</div>
+          </div>
+          <!-- 販売ページができたら href を入れて aria-disabled を外す -->
+          <a class="btn" href="#" aria-disabled="true">準備中</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <img class="logo-small" src="img/logo.webp" alt="" loading="lazy">
+  <div class="circle"><a href="../">かせいさんとこ</a></div>
+  <a href="https://x.com/kasei_san" target="_blank" rel="noopener">X @kasei_san</a>
+</footer>
+
+<script>
+(() => {
+  const scene = document.getElementById('scene');
+  const stage = scene.querySelector('.stage');
+  const bg = scene.querySelector('.bg');
+  const logo = scene.querySelector('.logo');
+  const sister = scene.querySelector('.sister');
+  const faces = sister.querySelectorAll('img');
+  const cols = [...scene.querySelectorAll('.story p')];
+  const event = scene.querySelector('.event');
+  const hint = scene.querySelector('.hint');
+  const sparkles = scene.querySelectorAll('.sparkle');
+  const skip = document.querySelector('.skip');
+  const info = document.querySelector('.info');
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let flip = { dx: 0, dy: 0, s: 1 };
+
+  // Logo's final position comes from CSS; the opening state is computed relative to it (FLIP).
+  function measure() {
+    logo.style.transform = 'none';
+    const r = logo.getBoundingClientRect();
+    const sr = stage.getBoundingClientRect();
+    const targetW = Math.min(sr.width * 0.86, sr.height * 0.6 * (r.width / r.height));
+    flip = {
+      s: targetW / r.width,
+      dx: sr.left + sr.width / 2 - (r.left + r.width / 2),
+      dy: sr.top + sr.height * 0.47 - (r.top + r.height / 2),
+    };
+  }
+
+  // ?p=0.5 freezes the scene at that point (for checking layouts)
+  const qp = new URLSearchParams(location.search).get('p');
+  const forced = qp === null ? null : clamp(parseFloat(qp));
+
+  // ?info hides the scene (for checking the sections below)
+  if (new URLSearchParams(location.search).has('info')) {
+    scene.style.display = 'none';
+    document.querySelector('.skip').hidden = true;
+  }
+  // ?y=800 scrolls there after load (for checking layouts)
+  const qy = new URLSearchParams(location.search).get('y');
+  if (qy !== null) addEventListener('load', () => scrollTo(0, +qy));
+
+  function progress() {
+    if (reduced) return 1;
+    if (forced !== null) return forced;
+    const total = scene.offsetHeight - stage.offsetHeight;
+    return clamp(-scene.getBoundingClientRect().top / total);
+  }
+
+  function render() {
+    const p = progress();
+
+    const m = easeInOut(seg(p, 0.06, 0.22));
+    logo.style.transform = `translate(${flip.dx * (1 - m)}px, ${flip.dy * (1 - m)}px) scale(${flip.s + (1 - flip.s) * m})`;
+
+    const rise = easeOut(seg(p, 0.21, 0.42));
+    sister.style.opacity = clamp(rise * 3);
+    sister.style.transform = `translateY(${(1 - rise) * stage.offsetHeight * 0.85}px)`;
+
+    faces[1].style.opacity = seg(p, 0.46, 0.52);
+    faces[2].style.opacity = seg(p, 0.83, 0.89);
+
+    const a0 = 0.42, a1 = 0.86, step = (a1 - a0) / cols.length;
+    cols.forEach((c, i) => {
+      const t = easeOut(seg(p, a0 + i * step, a0 + i * step + step * 2.2));
+      c.style.opacity = t;
+      c.style.transform = `translateX(${(1 - t) * 0.6}em)`;
+      c.style.filter = t < 1 ? `blur(${(1 - t) * 6}px)` : 'none';
+    });
+
+    event.style.opacity = seg(p, 0.89, 0.95);
+    sparkles.forEach((s, i) => { s.style.opacity = seg(p, 0.36 + i * 0.12, 0.42 + i * 0.12); });
+    hint.style.opacity = 1 - seg(p, 0.01, 0.06);
+    bg.style.transform = `scale(${1.12 - 0.12 * easeOut(p)})`;
+    // the skip button only makes sense while the scene is still playing
+    skip.classList.toggle('is-hidden', p >= 0.97 || scene.getBoundingClientRect().bottom < innerHeight * 0.5);
+  }
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { render(); ticking = false; });
+  };
+
+  function init() {
+    measure();
+    render();
+  }
+
+  skip.addEventListener('click', () => {
+    info.scrollIntoView({ behavior: 'instant', block: 'start' });
+  });
+
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { measure(); render(); });
+  if (document.readyState === 'complete') init(); else addEventListener('load', init);
+  document.fonts && document.fonts.ready.then(() => { measure(); render(); });
+})();
+</script>
+</body>
+</html>
