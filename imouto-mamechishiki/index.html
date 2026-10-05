@@ -275,20 +275,9 @@
 
   .video {
     position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
-    background: url("img/bg_land.jpg") center / cover;
-    display: grid; place-items: center;
+    background: url("img/bg_land.jpg") center / cover;  /* 埋め込みの読み込み中に見える */
   }
-  .video::before { content: ""; position: absolute; inset: 0; background: rgba(6, 8, 30, 0.55); }
-  .video .play {
-    position: relative; width: 78px; height: 78px; border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.8);
-    display: grid; place-items: center;
-  }
-  .video .play::before {
-    content: ""; margin-left: 6px; border-style: solid;
-    border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #fff;
-  }
-  .video .note { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 14px; color: var(--ink-dim); letter-spacing: 0.15em; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
   dl.spec { display: grid; grid-template-columns: max-content 1fr; gap: 18px 36px; margin: 0; font-size: clamp(16px, 2vw, 19px); }
   dl.spec dt { color: var(--gold); letter-spacing: 0.12em; }
@@ -414,7 +403,7 @@
 
     <section id="listen">
       <h2>試聴</h2>
-      <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/0yUVklaEJsc" title="【M3告知】ボイスドラマ 妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/0yUVklaEJsc" title="【M3告知】ボイスドラマ 妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
     </section>
 
     <section id="about">
