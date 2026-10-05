@@ -288,7 +288,7 @@
   /* 作品情報より下の文字サイズは、ラベル・本文 M・名前 L・XL に絞る。M は作品情報の dl とほぼ同じ */
   /* 金色のラベル（役職・日付・頒布の種類など）は、作品情報の dt（形態・価格…）と同じ大きさ。いちばん大事な情報（作者・M3 の配置・前作の作品名）は XL */
   #credit, #dist, #pr, .footer { --fs-s: 14px; --fs-label: clamp(16px, 2vw, 19px); --fs-m: clamp(16px, 2vw, 18px); --fs-l: clamp(19px, 2.4vw, 22px); --fs-xl: clamp(22px, 3.2vw, 30px); }  /* XL = 見出し（h2）と同じ大きさ */
-  .xl { font-size: var(--fs-xl) !important; font-weight: 800; letter-spacing: 0.08em; line-height: 1.35; }
+  .xl, .dist .ev.xl, .prev .title.xl { font-size: var(--fs-xl); font-weight: 800; letter-spacing: 0.08em; line-height: 1.35; }
   .xl span { display: inline-block; }  /* 狭い幅では言葉のまとまりで折り返す */
   #credit, #dist, #pr { font-size: var(--fs-m); }
   #credit .role { font-size: var(--fs-label); letter-spacing: 0.12em; color: var(--gold); }
@@ -315,7 +315,7 @@
   .tag { font-size: var(--fs-label); color: var(--gold); letter-spacing: 0.12em; white-space: nowrap; }
 
   /* 告知コラボ（他の作者さんの作品）。画像は白地のものが多いので、画像部分だけ明るい地に置く */
-  .pr-label { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: var(--ink-dim);
+  .pr-label { font-size: var(--fs-s); font-weight: 700; letter-spacing: 0.1em; color: var(--ink-dim);
               border: 1px solid rgba(222, 228, 252, 0.5); border-radius: 4px; padding: 1px 6px; }
   /* 前作（かせいさんとこ）の紹介。PC は画像と文を横に、スマホは縦に並べる */
   .prev { display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px 32px; align-items: center; margin-bottom: 48px; }
@@ -519,6 +519,7 @@
             <div class="ev">DLsite</div>
             <div class="sub">ダウンロード販売を予定しています</div>
           </div>
+          <!-- 販売ページができたら、ここに <a class="btn" href="…">DLsiteで聴く</a> を足す -->
         </div>
       </div>
     </section>
@@ -527,7 +528,7 @@
       <h2>あわせてチェック <span class="pr-label">PR</span></h2>
       <div class="panel prev">
         <a class="art" href="https://dlaf.jp/home/dlaf/=/t/s/link/work/aid/kasei_san/id/RJ01535087.html" target="_blank" rel="noopener">
-          <img src="img/kasu_oneesan.webp" alt="ボイスドラマ いろいろな法律を犯すカスのお姉さん" loading="lazy">
+          <img src="img/kasu_oneesan.webp" width="1000" height="523" alt="ボイスドラマ いろいろな法律を犯すカスのお姉さん" loading="lazy">
         </a>
         <div class="body">
           <span class="tag">かせいさんとこ 前作</span>
@@ -544,8 +545,8 @@
       <div class="pr">
         <div class="panel card">
           <a class="art" href="https://note.com/nemeos/n/n58d6d055cd54" target="_blank" rel="noopener">
-            <img class="pr-logo" src="img/pr_cardgame_logo.webp" alt="カードゲーム大好き作家アンソロジー3" loading="lazy">
-            <img class="pr-chara" src="img/pr_cardgame_chara.webp" alt="" loading="lazy">
+            <img class="pr-logo" src="img/pr_cardgame_logo.webp" width="900" height="425" alt="カードゲーム大好き作家アンソロジー3" loading="lazy">
+            <img class="pr-chara" src="img/pr_cardgame_chara.webp" width="284" height="640" alt="" loading="lazy">
           </a>
           <span class="tag">2026年11月8日（日）</span>
           <div class="where">文学フリマ東京43 う-82</div>
@@ -556,7 +557,7 @@
         </div>
         <div class="panel card">
           <a class="art cover" href="https://x.com/sukoyakamuimui/status/2101668854305108321" target="_blank" rel="noopener">
-            <img src="img/pr_sotomeshi_cover.webp" alt="そとめし団 雲南中華・ベトナム・ミャンマー編" loading="lazy">
+            <img src="img/pr_sotomeshi_cover.webp" width="1000" height="704" alt="そとめし団 雲南中華・ベトナム・ミャンマー編" loading="lazy">
           </a>
           <span class="tag">2026年10月10日（土）12:00〜15:30</span>
           <div class="where">関西めしけっと13in関東 飯428「そとめし団」<small>大田区産業プラザPiO 大展示ホール</small></div>
@@ -567,7 +568,7 @@
         </div>
         <div class="panel card wide">
           <a class="art cover dark" href="https://c.bunfree.net/p/tokyo43/70323?exhibit_id=63675" target="_blank" rel="noopener">
-            <img src="img/pr_jhorror_cover.webp" alt="異世界&quot;Jホラー&quot;" loading="lazy">
+            <img src="img/pr_jhorror_cover.webp" width="490" height="680" alt="異世界&quot;Jホラー&quot;" loading="lazy">
           </a>
           <span class="tag">2026年11月8日（日）</span>
           <div class="where">文学フリマ東京43 H-18</div>
