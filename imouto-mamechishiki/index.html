@@ -103,6 +103,7 @@
     color: var(--ink); font-weight: 500; white-space: nowrap;
   }
   .event b { color: var(--gold); font-weight: 700; font-size: 1.2em; margin: 0 0.6em; }
+  .event .date { display: block; font-size: 0.85em; margin-top: 0.2em; }
 
   .sparkle {
     position: absolute; width: var(--s); height: var(--s);
@@ -157,7 +158,7 @@
   @media (min-aspect-ratio: 1/1) {
     .frame { width: min(100vw, 177.78svh); aspect-ratio: 16 / 9; }
     .sister { left: 5.73cqw; top: 8.33cqh; height: 122.2cqh; aspect-ratio: 640 / 1400; --fade-a: 58%; --fade-b: 76%; }
-    .logo { left: 3.65cqw; bottom: 8.8cqh; width: 29.17cqw; }
+    .logo { left: 3.65cqw; bottom: 11.8cqh; width: 29.17cqw; }  /* 下の M3 の表示（日付つき2行）と重ならない高さ */
     .story { right: 4.7cqw; top: 8.1cqh; --f: 1.98cqw; }
     .story .gap-l { margin-block-start: 1.26em; }
     .event { left: 3.65cqw; width: 29.17cqw; text-align: center; bottom: 2.4cqh; font-size: 1.56cqw; }
@@ -284,20 +285,26 @@
   dl.spec dd { margin: 0; }
   dl.spec small { color: var(--ink-dim); font-size: 0.8em; margin-left: 0.4em; }
 
-  #credit .role { font-size: 13px; letter-spacing: 0.2em; color: var(--gold); }
+  /* 作品情報より下の文字サイズは、ラベル・本文 M・名前 L・XL に絞る。M は作品情報の dl とほぼ同じ */
+  /* 金色のラベル（役職・日付・頒布の種類など）は、作品情報の dt（形態・価格…）と同じ大きさ。いちばん大事な情報（作者・M3 の配置・前作の作品名）は XL */
+  #credit, #dist, #pr, .footer { --fs-s: 14px; --fs-label: clamp(16px, 2vw, 19px); --fs-m: clamp(16px, 2vw, 18px); --fs-l: clamp(19px, 2.4vw, 22px); --fs-xl: clamp(22px, 3.2vw, 30px); }  /* XL = 見出し（h2）と同じ大きさ */
+  .xl { font-size: var(--fs-xl) !important; font-weight: 800; letter-spacing: 0.08em; line-height: 1.35; }
+  .xl span { display: inline-block; }  /* 狭い幅では言葉のまとまりで折り返す */
+  #credit, #dist, #pr { font-size: var(--fs-m); }
+  #credit .role { font-size: var(--fs-label); letter-spacing: 0.12em; color: var(--gold); }
   .lead { margin-bottom: 40px; }
-  .lead .name { font-size: clamp(30px, 4.4vw, 40px); font-weight: 800; margin: 12px 0 4px; letter-spacing: 0.08em; }
-  .lead .circle-name { color: var(--ink-dim); font-size: 15px; margin-bottom: 14px; }
+  .lead .name { font-size: var(--fs-xl); font-weight: 800; margin: 12px 0 4px; letter-spacing: 0.08em; }
+  .lead .circle-name { color: var(--ink-dim); font-size: var(--fs-m); margin-bottom: 14px; }
   .cast { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px 40px; }
-  .cast .name { font-size: 19px; font-weight: 700; margin: 6px 0 4px; }
+  .cast .name { font-size: var(--fs-l); font-weight: 700; margin: 6px 0 4px; }
   #credit a, .footer a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid rgba(222, 228, 252, 0.35); }
   #credit a:hover, .footer a:hover { color: #fff; border-bottom-color: #fff; }
 
   .dist { display: grid; gap: 30px; }
   .dist .row { display: grid; justify-items: start; gap: 8px; }
-  .dist .ev { font-size: clamp(17px, 2.2vw, 21px); font-weight: 700; }
+  .dist .ev { font-size: var(--fs-l); font-weight: 700; }
   .dist .ev b { color: var(--gold); margin: 0 0.3em; }
-  .dist .sub { font-size: 14px; color: var(--ink-dim); margin-top: 4px; }
+  .dist .sub { font-size: var(--fs-m); color: var(--ink-dim); margin-top: 4px; }
   .btn {
     color: var(--gold); text-decoration: none; font-weight: 700; white-space: nowrap;
     border-bottom: 1px solid var(--gold); padding-bottom: 2px;
@@ -305,10 +312,63 @@
   .btn::after { content: " →"; }
   .btn[aria-disabled="true"] { color: var(--ink-dim); opacity: 0.6; pointer-events: none; border-bottom: 0; }
   .btn[aria-disabled="true"]::after { content: ""; }
-  .tag { font-size: 13px; color: var(--gold); letter-spacing: 0.15em; white-space: nowrap; }
+  .tag { font-size: var(--fs-label); color: var(--gold); letter-spacing: 0.12em; white-space: nowrap; }
 
-  .footer { text-align: center; padding: 40px 20px 60px; font-size: 14px; color: var(--ink-dim); background: #07091d; }
-  .footer .circle { font-size: 18px; color: var(--ink); font-weight: 700; margin-bottom: 8px; }
+  /* 告知コラボ（他の作者さんの作品）。画像は白地のものが多いので、画像部分だけ明るい地に置く */
+  .pr-label { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; color: var(--ink-dim);
+              border: 1px solid rgba(222, 228, 252, 0.5); border-radius: 4px; padding: 1px 6px; }
+  /* 前作（かせいさんとこ）の紹介。PC は画像と文を横に、スマホは縦に並べる */
+  .prev { display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px 32px; align-items: center; margin-bottom: 48px; }
+  .prev .art { display: block; border-radius: 10px; overflow: hidden; transition: opacity 0.2s; }
+  .prev .art img { display: block; width: 100%; height: auto; }
+  .prev .art:hover { opacity: 0.85; }
+  .prev .body { display: grid; justify-items: start; gap: 8px; }
+  .prev .title { font-size: var(--fs-l); font-weight: 700; line-height: 1.5; }
+  /* 「かせいさんとこ 前作」とキャッチは、ほかの金色ラベルと同じ大きさ */
+  .prev .catch { margin: 0; font-size: var(--fs-label); font-weight: 700; color: var(--gold); }
+  .prev .desc { font-size: var(--fs-m); line-height: 1.9; color: var(--ink-dim); }
+  .prev .desc p { margin: 0; }
+  .prev .desc span { display: inline-block; }  /* 文節の途中で折り返さない */
+  .prev .desc p + p { margin-top: 0.8em; }
+  .prev .btn { margin-top: 4px; }
+  @media (max-width: 720px) { .prev { grid-template-columns: 1fr; } }
+  .pr-lead { margin: -8px 0 28px; font-size: var(--fs-l); line-height: 1.7; color: var(--ink-dim); }
+  .pr-lead span { display: inline-block; }
+  .pr { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 32px 40px; }
+  /* 横に並んだカードで、画像・日付・作品名・紹介文・ボタンの行の高さをそろえる（7行 = カードの中身の数） */
+  .pr .card { display: grid; grid-row: span 7; grid-template-rows: subgrid; align-content: start; gap: 10px; }
+  .pr .art { display: flex; align-items: center; gap: 4%; aspect-ratio: 16 / 9; padding: 4% 6%;
+             background: #fff; border-radius: 10px; overflow: hidden; transition: opacity 0.2s; }
+  .pr a.art { text-decoration: none; }
+  .pr a.art:hover { opacity: 0.85; }
+  .pr .art .pr-logo { flex: 1; min-width: 0; width: 100%; height: auto; }
+  .pr .art .pr-chara { height: 100%; width: auto; }
+  .pr .art.cover { padding: 0; background: #f4f4f2; }
+  .pr .art.cover img { width: 100%; height: 100%; object-fit: contain; }
+  .pr .art.cover.dark { background: #281f1e; }  /* 縦長の表紙の左右を、表紙のふちと同じ色で埋める */
+  .pr .where { font-size: var(--fs-m); line-height: 1.7; color: var(--ink); margin-top: -4px; }
+  .pr .where small { display: block; font-size: var(--fs-s); color: var(--ink-dim); }
+  .pr .title { font-size: var(--fs-l); font-weight: 700; line-height: 1.5; margin-top: 4px; }
+  .pr .title small { display: block; font-size: var(--fs-m); font-weight: 600; }
+  .pr .by { font-size: var(--fs-m); color: var(--ink-dim); }
+  .pr .by a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid rgba(222, 228, 252, 0.35); }
+  .pr .desc { font-size: var(--fs-m); line-height: 1.9; color: var(--ink-dim); margin: 0; }
+  .pr .btn { justify-self: start; margin-top: 4px; }
+  .pr .tag { white-space: normal; }  /* 狭い幅では日時を小さくせず折り返す */
+  /* 紹介文の長いカードは、PC では横幅いっぱいに広げて「左に文・右に縦長の表紙」の2段組みにし、上のカードと線で区切る */
+  @media (min-width: 760px) {
+    /* 表紙が文より長いとき、余った高さは最後の空き行（1fr）に回して、文の行間を広げない */
+    .pr .card.wide { grid-column: 1 / -1; grid-row: auto; grid-template-rows: repeat(6, auto) 1fr;
+                     grid-template-columns: 1fr 280px; column-gap: 40px;
+                     border-top: 1px solid var(--line); padding-top: 32px; }
+    .pr .card.wide > .art { grid-column: 2; grid-row: 1 / -1; align-self: start;
+                            aspect-ratio: auto; padding: 0; background: none; border-radius: 6px; }
+    .pr .card.wide > .art img { height: auto; }
+    .pr .card.wide > :not(.art) { grid-column: 1; }
+  }
+
+  .footer { text-align: center; padding: 40px 20px 60px; font-size: var(--fs-m); color: var(--ink-dim); background: #07091d; }
+  .footer .circle { font-size: var(--fs-l); color: var(--ink); font-weight: 700; margin-bottom: 8px; }
   .footer .circle a { color: var(--ink); border-bottom: 0; }
 
   @media (max-width: 560px) {
@@ -363,7 +423,7 @@
 
       <img class="logo" src="img/logo.webp" alt="ボイスドラマ 妹が布団に入ってきて眠れなくなる豆知識を吹き込んでくるので眠れない">
 
-      <p class="event">2026秋M3<b>B-13a</b>かせいさんとこ</p>
+      <p class="event">2026秋M3<b>B-13a</b>かせいさんとこ<span class="date">2026年10月25日（日）</span></p>
     </div>
 
     <div class="hint" aria-hidden="true">
@@ -412,7 +472,7 @@
         <dl class="spec">
           <dt>形態</dt><dd>ダウンロードカード</dd>
           <dt>価格</dt><dd>1,000円</dd>
-          <dt>収録時間</dt><dd>約25分<small>（編集中）</small></dd>
+          <dt>収録時間</dt><dd>約24分</dd>
         </dl>
       </div>
     </section>
@@ -444,24 +504,77 @@
       <div class="dist">
         <div class="panel row">
           <div>
-            <div class="ev">2026秋M3<b>B-13a</b>かせいさんとこ</div>
+            <div class="ev xl"><span>2026秋M3<b>B-13a</b></span><span>かせいさんとこ</span></div>
+            <div class="sub">2026年10月25日（日）</div>
           </div>
-          <span class="tag">イベント頒布</span>
         </div>
         <div class="panel row">
           <div>
             <div class="ev">冬コミ</div>
             <div class="sub">当選した場合に頒布予定</div>
           </div>
-          <span class="tag">予定</span>
         </div>
         <div class="panel row">
           <div>
             <div class="ev">DLsite</div>
             <div class="sub">ダウンロード販売を予定しています</div>
           </div>
-          <!-- 販売ページができたら href を入れて aria-disabled を外す -->
-          <a class="btn" href="#" aria-disabled="true">準備中</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="pr">
+      <h2>あわせてチェック <span class="pr-label">PR</span></h2>
+      <div class="panel prev">
+        <a class="art" href="https://dlaf.jp/home/dlaf/=/t/s/link/work/aid/kasei_san/id/RJ01535087.html" target="_blank" rel="noopener">
+          <img src="img/kasu_oneesan.webp" alt="ボイスドラマ いろいろな法律を犯すカスのお姉さん" loading="lazy">
+        </a>
+        <div class="body">
+          <span class="tag">かせいさんとこ 前作</span>
+          <div class="title xl"><span>いろいろな法律を犯す</span><span>カスのお姉さん</span></div>
+          <p class="catch">お姉さんが犯す世界のいろいろな(変な)法律!!</p>
+          <div class="desc">
+            <p><span>お姉さんが逮捕された……!</span> <span>面会に向かった少年が聞かされる、</span><span>お姉さんが犯した法律とは……!!</span><br><span>知ってたかい?</span> <span>アラバマ州ではクマ相撲の入場料を</span><span>取るのは違法なんだ……。</span><br><span>知ってたかい?</span> <span>西オーストラリア州では</span><span>ジャガイモを50kg以上運ぶのは</span><span>違法なんだ……(注2016年まで)。</span><br><span>次々と明かされる変な法律!!</span> <span>そして衝撃のラストとは……!!</span></p>
+            <p><span>たぶん世界初!</span> <span>初手ヒロイン逮捕のボイスドラマ!!</span> <span>全17分</span></p>
+          </div>
+          <a class="btn" href="https://dlaf.jp/home/dlaf/=/t/s/link/work/aid/kasei_san/id/RJ01535087.html" target="_blank" rel="noopener">DLsiteで聴く</a>
+        </div>
+      </div>
+      <p class="pr-lead"><span>本ボイスドラマは、</span><span>以下の同人作品を</span><span>応援しております。</span></p>
+      <div class="pr">
+        <div class="panel card">
+          <a class="art" href="https://note.com/nemeos/n/n58d6d055cd54" target="_blank" rel="noopener">
+            <img class="pr-logo" src="img/pr_cardgame_logo.webp" alt="カードゲーム大好き作家アンソロジー3" loading="lazy">
+            <img class="pr-chara" src="img/pr_cardgame_chara.webp" alt="" loading="lazy">
+          </a>
+          <span class="tag">2026年11月8日（日）</span>
+          <div class="where">文学フリマ東京43 う-82</div>
+          <div class="title">カードゲーム大好き作家アンソロジー3</div>
+          <div class="by">獅子吼れお（<a href="https://x.com/44900_lion" target="_blank" rel="noopener">@44900_lion</a>）</div>
+          <p class="desc">獅子吼れお、青猫あずき、暁刀魚、秋野てくと、IS、海野しぃる、佐遊樹、春海水亭、東田悠里、らすね、ロリバスら、カードゲーム大好き作家によるカードゲーム小説アンソロジー</p>
+          <a class="btn" href="https://note.com/nemeos/n/n58d6d055cd54" target="_blank" rel="noopener">詳しくはこちら</a>
+        </div>
+        <div class="panel card">
+          <a class="art cover" href="https://x.com/sukoyakamuimui/status/2101668854305108321" target="_blank" rel="noopener">
+            <img src="img/pr_sotomeshi_cover.webp" alt="そとめし団 雲南中華・ベトナム・ミャンマー編" loading="lazy">
+          </a>
+          <span class="tag">2026年10月10日（土）12:00〜15:30</span>
+          <div class="where">関西めしけっと13in関東 飯428「そとめし団」<small>大田区産業プラザPiO 大展示ホール</small></div>
+          <div class="title">そとめし団<small>雲南中華・ベトナム・ミャンマー編</small></div>
+          <div class="by">すこやかむいむい（<a href="https://x.com/sukoyakamuimui" target="_blank" rel="noopener">@sukoyakamuimui</a>）</div>
+          <p class="desc">メニューの文字から全然読めない、客も外人ばかりのガチ系めし屋で、未知すぎる味覚と文化に向き合う。令和最新、東京異邦「ガチグルメ」風雲録！</p>
+          <a class="btn" href="https://x.com/sukoyakamuimui/status/2101668854305108321" target="_blank" rel="noopener">詳しくはこちら</a>
+        </div>
+        <div class="panel card wide">
+          <a class="art cover dark" href="https://c.bunfree.net/p/tokyo43/70323?exhibit_id=63675" target="_blank" rel="noopener">
+            <img src="img/pr_jhorror_cover.webp" alt="異世界&quot;Jホラー&quot;" loading="lazy">
+          </a>
+          <span class="tag">2026年11月8日（日）</span>
+          <div class="where">文学フリマ東京43 H-18</div>
+          <div class="title">異世界"Jホラー"</div>
+          <div class="by">棺桶六（<a href="https://x.com/kannoke6" target="_blank" rel="noopener">@kannoke6</a>）</div>
+          <p class="desc">いわゆる「剣と魔法の世界」に存在するミドルグランド王国。昨今、国内ではモンスターと異なる脅威「怪異」の存在が囁かれていた。見ると7日後に死ぬ「黒い巻物」、関わると死ぬ「白い家」、ダンジョンから繋がる「地底の村」。錬金術師シュネルと警吏のサメジマはとある事情により怪異の情報を収集していたが、次第に彼ら自身も怪異に巻き込まれ･･････。カクヨムコンテスト10ホラー部門週間ランキング最高7位を記録した(なお無事落選)、「『ホラー』と銘打てば何をやっても許されるのか」を問いかける問題作。</p>
+          <a class="btn" href="https://c.bunfree.net/p/tokyo43/70323?exhibit_id=63675" target="_blank" rel="noopener">詳しくはこちら</a>
         </div>
       </div>
     </section>
